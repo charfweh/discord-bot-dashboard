@@ -1,11 +1,11 @@
 # Discord Bot Dashboard
 
 Web dashboard for [SFSA](https://github.com/charfweh/superfastserverassistant)
-##### Under Development
+##### Project under development
 ### About
-Control your server with the Bot Dashboard, make em multiple roles, channels, voice channels, categories and you tell me.
-**You can use this Project to make your own dashboard, I'd love to see what you can make out of it**
-Please refer to SFSA [Readme](https://github.com/charfweh/superfastserverassistant#readme)
+Control your server with the Bot Dashboard, make em multiple roles, channels, voice channels, categories and you tell me.\
+**You can use this Project to make your own dashboard, I'd love to see what you can make out of it**\
+Please refer to SFSA [Readme](https://github.com/charfweh/superfastserverassistant#readme) for more info
 ### Setup
 - Fork em clone em copy em just do it
 - Install the dependencies
