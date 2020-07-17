@@ -14,7 +14,7 @@ Please refer to SFSA [Readme](https://github.com/charfweh/superfastserverassista
 ### Setup
 - Fork em clone em copy em just do it
 - Install the dependencies
-- Make an application on Discord Developer(https://discord.com/developers/) and configure ``oauth2`` callback URL/s
+- Make an application on [Discord Developer](https://discord.com/developers/) and configure ``oauth2`` callback URL/s
 - Fuel up the Bot as well under the same application
 - Make a new file ``config.json`` and configure the file in accordance to ``config.json.example``
 - Thats pretty much it
