@@ -1,0 +1,10 @@
+{
+    "port": 3000,
+
+    "clientId": "",
+    "clientSecret": "",
+    "scopes": ["identify", "guilds"],
+    "redirectUri": "",
+    "token":"",
+    "inviteurl":""
+}
