@@ -1,11 +1,11 @@
 <div class="navbar">
-    <a href="/"><%- pageTitle %></a>
+    <a href="/">Home</a>
 
     <div class="right">
         <% if (user) { %>
-            <a href="/me"><%- user.tag %></a>
-
-            <a href="/servers">My Servers</a>
+            <a href = "https://discord.com/api/oauth2/authorize?client_id=536543417271058444&permissions=8&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauthorize%2Fcallback&scope=bot" target="_blank">Invite</a>
+            <a href="https://www.youtube.com/watch?v=HnfkEVtetuE" target="_blank"><%- user.tag %></a>
+            <a href="/manage">Manage</a>
             <a href="/authorize/logout">Logout</a>
         <% } else { %>
             <a href="/authorize">Login</a>

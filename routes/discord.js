@@ -1,26 +1,25 @@
 const router = require('express').Router();
-
 const { clientId, clientSecret, scopes, redirectUri } = require('../config.json');
 const fetch = require('node-fetch');
 const FormData = require('form-data');
-
+const {userhit} = require("../bot/webapi_handler.js");
 const forceAuth = (req, res, next) => {
     if (!req.session.user) return res.redirect('/authorize')
     else return next();
 }
-
+//bot
 router.get('/', (req, res) => {
     if (req.session.user) return res.redirect('/');
 
-    const authorizeUrl = `https://discordapp.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=${scopes.join('%20')}`;
+    const authorizeUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauthorize%2Fcallback&response_type=code&scope=identify%20guilds`;
     res.redirect(authorizeUrl);
 });
 
 router.get('/callback', (req, res) => {
     if (req.session.user) return res.redirect('/');
-    
+
     const accessCode = req.query.code;
-    if (!accessCode) throw new Error('No access code returned frm Discord');
+    if (!accessCode) throw new Error('No access code returned from Discord');
 
     const data = new FormData();
     data.append('client_id', clientId);
@@ -29,7 +28,6 @@ router.get('/callback', (req, res) => {
     data.append('redirect_uri', redirectUri);
     data.append('scope', scopes.join(' '));
     data.append('code', accessCode);
-
     fetch('https://discordapp.com/api/oauth2/token', {
         method: 'POST',
         body: data
@@ -37,24 +35,38 @@ router.get('/callback', (req, res) => {
     .then(res => res.json())
     .then(response => {
         fetch('https://discordapp.com/api/users/@me', {
-            method: 'GET',
+          method: 'GET',
+            headers: {
+                authorization: `${response.token_type} ${response.access_token}`
+            },
+        })
+        .then(res2 =>res2.json())
+        .then(userResponse => {
+            userResponse.tag = `${userResponse.username}#${userResponse.discriminator}`;
+            userResponse.avatarURL = userResponse.avatar ? `https://cdn.discordapp.com/avatars/${userResponse.id}/${userResponse.avatar}.png?` : null;
+            userhit(userResponse)
+            req.session.user = userResponse;
+
+        });
+        fetch('https://discordapp.com/api/users/@me/guilds', {
+          method: 'GET',
             headers: {
                 authorization: `${response.token_type} ${response.access_token}`
             },
         })
         .then(res2 => res2.json())
-        .then(userResponse => {
-            userResponse.tag = `${userResponse.username}#${userResponse.discriminator}`;
-            userResponse.avatarURL = userResponse.avatar ? `https://cdn.discordapp.com/avatars/${userResponse.id}/${userResponse.avatar}.png?size=1024` : null;
-
-            req.session.user = userResponse;
-            res.redirect('/');
+        .then(gResponse => {
+          req.session.guilds = gResponse;
+          res.redirect('/');
         });
-    });
+      });
 });
-
 router.get('/logout', forceAuth, (req, res) => {
-    req.session.destroy();
-});
+    req.session.destroy((err)=>{
+      if(err) console.log("session not destroyed")
+      console.log("session destroyed")
 
+    });
+    res.redirect('/')
+});
 module.exports = router;

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css" integrity="sha512-8Tb+T7SKUFQWOPIQCaLDWWe1K/SY8hvHl7brOH8Nz5z1VT8fnf8B+9neoUzmFY3OzkWMMs3OjrwZALgB1oXFBg==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/button.min.css" integrity="sha512-OD0ScwZAE5PCg4nATXnm8pdWi0Uk0Pp2XFsFz1xbZ7xcXvapzjvcxxHPeTZKfMjvlwwl4sGOvgJghWF2GRZZDw==" crossorigin="anonymous" />
+    <title><%- pageTitle %></title>
+
+    <link rel="stylesheet" type="text/css" href="/stylesheet.css">
+
+</head>
+<body>
+      <%- include('partials/navbar.ejs') %>
+    <div class="page-content">
+      <% for ( g of mutualguilds) {%>
+            <p class="header"><%= g.name %>
+              <button class="ui secondary basic button">
+              <a href = "/manage/<%-g.id%>"><i class="cog icon"></i> Manage</a></button></p>
+      <% } %>
+      <% for ( g of inviteguilds) {%>
+            <p class="header"><%= g.name %>
+              <button class="ui secondary basic button">
+              <a href = "https://discord.com/api/oauth2/authorize?client_id=536543417271058444&permissions=8&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauthorize%2Fcallback&scope=bot">
+                <i class="plus icon"></i>Invite
+              </a></button>
+            </p>
+
+      <% } %>
+</body>
+</html>
