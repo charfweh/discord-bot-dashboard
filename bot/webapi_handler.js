@@ -43,7 +43,7 @@ function manageguild(g_id){
 async function modifyguild(channels,g_id){
     let c = channels[0].split(',')
     editguild = bot.guilds.cache.get(g_id)
-    if(!editguild.channels.cache.find(c=>c.name == 'dashboard-logs')) return "Channel not found"
+    if(!editguild.channels.cache.find(c=>c.name == 'dashboard-logs')) return "Error"
     else{
       c.forEach((item, i) => {
       editguild.channels.create(item,"text").then(()=>{
@@ -53,7 +53,7 @@ async function modifyguild(channels,g_id){
       })
       });
     }
-    return "success"
+    return "OK"
 }
 
 

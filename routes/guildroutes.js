@@ -33,9 +33,8 @@ router.post('/:id/modifyguild',(req,res)=>{
   let result = channels.match(regex)
   if(result == null) res.send("malformed argument")
   let res_status = modifyguild(result,guildobj.id)
-  res.json({
-    "msg":"Processed request"
-  })
+  if(res_status == 'Error') return res.send("Error")
+  res.send("Success!")
 })
 
 
