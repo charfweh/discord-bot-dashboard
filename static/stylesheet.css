@@ -60,13 +60,17 @@ a:hover{
   font-weight: bold;
   letter-spacing: 2px;
 }
-
+.mainbody{
+  align-content: center;
+  text-align: center;
+  padding-top: 3rem;
+  letter-spacing: 2px;
+}
 .avatar{
   border-radius: 50%;
   height: 30px;
   width: 30px;
 }
-
 
 @import url("https://fonts.googleapis.com/css?family=Fjalla+One&display=swap");
 * {
