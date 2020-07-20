@@ -4,7 +4,7 @@ Web dashboard for [SFSA](https://github.com/charfweh/superfastserverassistant)
 ### About
 Control your server with the Bot Dashboard, make em multiple roles, channels, voice channels, categories and you tell me. Made for Server admins and owner!
 #### Note:
-**You can use this Project to make your own dashboard, I'd love to see what you can make out of it**\
+**You can use this Project to make your own dashboard, I'd love to see what you can make out of it**
 
 This project serves as a starter pack for **Bot+Dashboard**, It'll not be continued for further production, use it for your own project and make something! you'll learn a lot, I'm sure about that.
 
