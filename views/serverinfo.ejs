@@ -16,12 +16,12 @@
     <div class="page-content">
       <% for ( g of mutualguilds) {%>
             <p class="header"><%= g.name %>
-              <button class="ui secondary basic button">
+              <button class="ui inverted grey button">
               <a href = "/manage/<%-g.id%>"><i class="cog icon"></i> Manage</a></button></p>
       <% } %>
       <% for ( g of inviteguilds) {%>
             <p class="header"><%= g.name %>
-              <button class="ui secondary basic button">
+              <button class="ui inverted grey button">
               <a href = "https://discord.com/api/oauth2/authorize?client_id=536543417271058444&permissions=8&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauthorize%2Fcallback&scope=bot">
                 <i class="plus icon"></i>Invite
               </a></button>

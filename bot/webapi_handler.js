@@ -40,11 +40,13 @@ function manageguild(g_id){
 }
 
 //parse the channels from POST request
-async function modifyguild(channels,g_id){
+async function modifyguild(channels, g_id, webuser){
     let c = channels[0].split(',')
     editguild = bot.guilds.cache.get(g_id)
     if(!editguild.channels.cache.find(c=>c.name == 'dashboard-logs')) return "Error"
     else{
+      let logs = await editguild.channels.cache.find(c => c.name == 'dashboard-logs')
+      logs.send(`User initiated edit guild ${webuser.tag}`)
       c.forEach((item, i) => {
       editguild.channels.create(item,"text").then(()=>{
         console.log("Channel created",item)

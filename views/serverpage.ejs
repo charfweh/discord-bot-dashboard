@@ -13,8 +13,8 @@
       <%- include('partials/navbar.ejs') %>
     <div class="page-content">
         <div class="editguild">
-          <form action="/manage/<%-guildid%>/modifyguild" method="post">
-            <label class = "l1"><i class="server icon"></i>Edit Guild</label>
+          <form action="/manage/<%-guildid%>" method="post">
+            <label class = "l1"><i class="server icon"></i>Edit <%= name %></label>
             <label class = "l2"><i class="user icon"></i>Owner <%= owner %> <i class="user icon"></i>Member count <%= count %></label>
             <input placeholder="Channels to create" title = "boy what?" name = "channels" type="text" />
             <input placeholder="Roles to create"  name = "roles" type="text" />

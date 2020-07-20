@@ -5,7 +5,7 @@ const { clientId, clientSecret, scopes, redirectUri } = require('../config.json'
 const fetch = require('node-fetch');
 const FormData = require('form-data');
 const {userhit,manageguild,checkguild,modifyguild} = require("../bot/webapi_handler.js");
-let id,guildobj,mutualguilds;
+let id,guildobj,mutualguilds,webuser;
 // define the home page route
 // middleware that is specific to this router
 router.get('/', function (req, res) {
@@ -26,13 +26,14 @@ router.get('/:id',(req,res)=>{
   res.render("serverpage",{user:req.session.user,count:guildobj.memberCount, pageTitle:"Edit Guild" , name:guildobj.guildname , iconurl:guildobj.iconurl , owner:guildobj.owner, guildid:guildobj.id})
 })
 
-router.post('/:id/modifyguild',(req,res)=>{
+router.post('/:id',(req,res)=>{
   console.log(req.body.channels)
   let channels = req.body.channels
   let regex = /^[a-zA-Z0-9\-\,]+/gm
   let result = channels.match(regex)
-  if(result == null) res.send("malformed argument")
-  let res_status = modifyguild(result,guildobj.id)
+  webuser = req.session.user
+  if(result == null) return res.send("malformed argument")
+  let res_status = modifyguild(result,guildobj.id,webuser)
   if(res_status == 'Error') return res.send("Error")
   res.send("Success!")
 })

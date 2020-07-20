@@ -23,9 +23,11 @@ p, a {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     color: #000000;
+    text-decoration: none;
 }
 a:hover{
   color:#000000 ;
+  text-decoration: none;
 }
 .navbar {
     background: #23272A;
